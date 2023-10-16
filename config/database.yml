@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: csx_server_api_production
-  username: csx_server_api
-  password: <%= ENV['CSX_SERVER_API_DATABASE_PASSWORD'] %>
+  username: postgres
+  password: postgres
