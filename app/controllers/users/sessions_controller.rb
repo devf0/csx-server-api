@@ -7,12 +7,8 @@ class Users::SessionsController < Devise::SessionsController
 
   def respond_with current_user, _opt = {}
     render json: {
-      status: {
-        code: 200, message: "Logged in successfully",
-        data: {
-          user: UserSerializer.new(current_user).serializable_hash[:data][:attributes]
-        }
-      }
+      status: { code: 200, message: "Logged in successfully"},
+      user: UserSerializer.new(current_user).serializable_hash[:data][:attributes]
     }, status: :ok
   end
 
@@ -24,13 +20,11 @@ class Users::SessionsController < Devise::SessionsController
 
       if current_user
         render json: {
-          status: 200,
-          message: 'Logged out successfully'
+          status: {code: 200, message: 'Logged out successfully'}
         }, status: :ok
       else
         render json: {
-          status: 401,
-          message: 'Unauthorized'
+          status: {code: 401, message: 'Unauthorized'}
         }, status: :unauthorized
       end
     end
